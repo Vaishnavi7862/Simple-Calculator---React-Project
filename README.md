@@ -1,70 +1,224 @@
-# Getting Started with Create React App
+# Simple-Calculator---React-Project
+# Ex04 Simple Calculator - React Project
+## Date:22-08-2026
+## Name : vaishnavi.d
+## Reg No : 212224220118
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## AIM
+To  develop a Simple Calculator using React.js with clean and responsive design, ensuring a smooth user experience across different screen sizes.
 
-## Available Scripts
+## ALGORITHM
+### STEP 1
+Create a React App.
 
-In the project directory, you can run:
+### STEP 2
+Open a terminal and run:
+  <ul><li>npx create-react-app simple-calculator</li>
+  <li>cd simple-calculator</li>
+  <li>npm start</li></ul>
 
-### `npm start`
+### STEP 3
+Inside the src/ folder, create a new file Calculator.js and define the basic structure.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### STEP 4
+Plan the UI: Display screen, number buttons (0-9), operators (+, -, *, /), clear (C), and equal (=).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### STEP 5
+Create a new file Calculator.css in src/ and add the styling.
 
-### `npm test`
+### STEP 6
+Open src/App.js and modify it.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### STEP 7
+Start the development server.
+  npm start
 
-### `npm run build`
+### STEP 8
+Open http://localhost:3000/ in the browser.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### STEP 9
+Test the calculator by entering numbers and operations.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### STEP 10
+Fix styling issues and refine content placement.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### STEP 11
+Deploy the website.
 
-### `npm run eject`
+### STEP 12
+Upload to GitHub Pages for free hosting.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## PROGRAM
+app.js
+```
+import React from "react";
+import Calculator from "./Calculator";
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+function App() {
+  return (
+    <div>
+      <h1 style={{ textAlign: "center" }}>Simple Calculator</h1>
+      <Calculator />
+    </div>
+  );
+}
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+export default App;
+```
+calculator.js
+```
+import React, { useState } from "react";
+import "./Calculator.css";
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+function Calculator() {
+  const [display, setDisplay] = useState("");
 
-## Learn More
+  const handleClick = (value) => {
+    if (value === "C") {
+      setDisplay("");
+    } else if (value === "=") {
+      try {
+        setDisplay(eval(display).toString());
+      } catch {
+        setDisplay("Error");
+      }
+    } else {
+      setDisplay(display + value);
+    }
+  };
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  const buttons = [
+    "7", "8", "9", "/",
+    "4", "5", "6", "*",
+    "1", "2", "3", "-",
+    "0", "C", "=", "+"
+  ];
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  return (
+    <div className="calculator">
+      <input
+        type="text"
+        value={display}
+        readOnly
+        className="display"
+      />
 
-### Code Splitting
+      <div className="buttons">
+        {buttons.map((button) => (
+          <button
+            key={button}
+            onClick={() => handleClick(button)}
+            className={button === "=" ? "equal" : ""}
+          >
+            {button}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+export default Calculator;
+```
+calculator.css
+```
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ff6b6b, #6c5ce7, #00cec9);
+  min-height: 100vh;
+}
 
-### Analyzing the Bundle Size
+h1 {
+  color: white;
+  padding-top: 25px;
+  font-size: 35px;
+  text-shadow: 2px 2px 5px #333;
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+.calculator {
+  width: 320px;
+  margin: 30px auto;
+  padding: 25px;
+  background: linear-gradient(145deg, #2d3436, #636e72);
+  border-radius: 25px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
 
-### Making a Progressive Web App
+.display {
+  width: 100%;
+  height: 70px;
+  margin-bottom: 20px;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: right;
+  color: #2d3436;
+  background: #ffeaa7;
+  border: 4px solid #fdcb6e;
+  border-radius: 15px;
+  outline: none;
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
 
-### Advanced Configuration
+button {
+  height: 60px;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  background: linear-gradient(145deg, #0984e3, #6c5ce7);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  transition: 0.2s;
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+button:hover {
+  transform: scale(1.08);
+  background: linear-gradient(145deg, #e84393, #fd79a8);
+}
 
-### Deployment
+button:active {
+  transform: scale(0.95);
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+button:nth-child(4),
+button:nth-child(8),
+button:nth-child(12),
+button:nth-child(16) {
+  background: linear-gradient(145deg, #e17055, #d63031);
+}
 
-### `npm run build` fails to minify
+button:nth-child(4):hover,
+button:nth-child(8):hover,
+button:nth-child(12):hover,
+button:nth-child(16):hover {
+  background: linear-gradient(145deg, #ff7675, #e84393);
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+button:nth-child(14) {
+  background: linear-gradient(145deg, #00b894, #00cec9);
+}
+
+.equal {
+  background: linear-gradient(145deg, #00b894, #55efc4) !important;
+  color: #2d3436;
+}
+
+.equal:hover {
+  background: linear-gradient(145deg, #ffeaa7, #fdcb6e) !important;
+}
+```
+
+## OUTPUT
+![alt text](<Screenshot (169).png>)
+
+## RESULT
+The program for developing a simple calculator in React.js is executed successfully.
