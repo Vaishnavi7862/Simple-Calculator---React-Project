@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Simple-Calculator---React-Project
 # Ex04 Simple Calculator - React Project
 ## Date:22-08-2026
