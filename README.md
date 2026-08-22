@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Simple-Calculator---React-Project
 # Ex04 Simple Calculator - React Project
 ## Date:22-08-2026
@@ -222,3 +223,6 @@ button:nth-child(14) {
 
 ## RESULT
 The program for developing a simple calculator in React.js is executed successfully.
+=======
+# Simple-Calculator---React-Project
+>>>>>>> ff8cecabe80ffc84d86ec03dae488c4bde9bb6b5
